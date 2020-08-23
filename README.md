@@ -20,4 +20,4 @@ This script assumes 7 cpu speeds are available in /sys/devices/system/cpu/cpu[0-
 
 This script does not enable cpu speeds other than those already supported; it is not for over/underclocking or correcting cpu upper or lower limits.
 
-This script requires cpufrequtils and will install it (Debian).
+This script requires cpufrequtils which is a Linux Kernel module, and will install it (Debian) if it's not installed.
