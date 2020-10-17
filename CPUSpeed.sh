@@ -47,7 +47,7 @@ echo 'Dependencies installed.'
 #echo '****************************************************************'
 #############################################################################################
 echo ''
-cd /sys/devices/system/cpu 
+cd /sys/devices/system/cpu
 echo 'Checking cpu frequency options in'; pwd
 #############################################################################################
 
@@ -76,45 +76,87 @@ echo 'Enter any other value to exit without making changes.'
 echo 'Waiting for response...'
 #############################################################################################
 #We now have 7 options with values taken from the Available frequencies list printed to screen
-#Create new variable "n" and get user to select the value of another variable for it. 
+#Create new variable "n" and get user to select the value of another variable for it.
 #Depending on the case selected, use spufrequtils to set the governer, and max frequency for all 4 cores.
 #frequency is still the same value taken from the available frequencies list.
+#
+#Currently configured for a 4-core CPU
+#For an 8-core CPU uncomment the following switch/case blocks.
+#For more cores you must edit the switch/case blocks or it will not set the frequency for all cores.
+#attempting to set frequency for nonexistent hardware will throw the following error:
+#   wrong, unknown or unhandled CPU?
+#    Error setting new values. Common errors:
+#    - Do you have proper administration rights? (super-user?)
+#    - Is the governor you requested available and modprobed?
+#    - Trying to set an invalid policy?
+#    - Trying to set a specific frequency, but userspace governor is not available,
+#       for example because of hardware which cannot be set to a specific frequency
+#       or because the userspace governor isn't loaded?
+#
 read n
 case $n in
 1) sudo cpufreq-set -g ondemand -c 0 -u $speedOne'kHz'
 sudo cpufreq-set -g ondemand -c 1 -u $speedOne'kHz'
 sudo cpufreq-set -g ondemand -c 2 -u $speedOne'kHz'
 sudo cpufreq-set -g ondemand -c 3 -u $speedOne'kHz'
+#sudo cpufreq-set -g ondemand -c 4 -u $speedOne'kHz'
+#sudo cpufreq-set -g ondemand -c 5 -u $speedOne'kHz'
+#sudo cpufreq-set -g ondemand -c 6 -u $speedOne'kHz'
+#sudo cpufreq-set -g ondemand -c 7 -u $speedOne'kHz'
 echo 'CPU set to' $speedOne'kHz';;
 2) sudo cpufreq-set -g ondemand -c 0 -u $speedTwo'kHz'
 sudo cpufreq-set -g ondemand -c 1 -u $speedTwo'kHz'
 sudo cpufreq-set -g ondemand -c 2 -u $speedTwo'kHz'
 sudo cpufreq-set -g ondemand -c 3 -u $speedTwo'kHz'
+#sudo cpufreq-set -g ondemand -c 4 -u $speedTwo'kHz'
+#sudo cpufreq-set -g ondemand -c 5 -u $speedTwo'kHz'
+#sudo cpufreq-set -g ondemand -c 6 -u $speedTwo'kHz'
+#sudo cpufreq-set -g ondemand -c 7 -u $speedTwo'kHz'
 echo 'CPU set to' $speedTwo'kHz';;
 3) sudo cpufreq-set -g ondemand -c 0 -u $speedThree'kHz'
 sudo cpufreq-set -g ondemand -c 1 -u $speedThree'kHz'
 sudo cpufreq-set -g ondemand -c 2 -u $speedThree'kHz'
 sudo cpufreq-set -g ondemand -c 3 -u $speedThree'kHz'
+#sudo cpufreq-set -g ondemand -c 4 -u $speedThree'kHz'
+#sudo cpufreq-set -g ondemand -c 5 -u $speedThree'kHz'
+#sudo cpufreq-set -g ondemand -c 6 -u $speedThree'kHz'
+#sudo cpufreq-set -g ondemand -c 7 -u $speedThree'kHz'
 echo 'CPU set to' $speedThree'kHz';;
 4) sudo cpufreq-set -g ondemand -c 0 -u $speedFour'kHz'
 sudo cpufreq-set -g ondemand -c 1 -u $speedFour'kHz'
 sudo cpufreq-set -g ondemand -c 2 -u $speedFour'kHz'
 sudo cpufreq-set -g ondemand -c 3 -u $speedFour'kHz'
+#sudo cpufreq-set -g ondemand -c 4 -u $speedFour'kHz'
+#sudo cpufreq-set -g ondemand -c 5 -u $speedFour'kHz'
+#sudo cpufreq-set -g ondemand -c 6 -u $speedFour'kHz'
+#sudo cpufreq-set -g ondemand -c 7 -u $speedFour'kHz'
 echo 'CPU set to' $speedFour'kHz';;
 5) sudo cpufreq-set -g ondemand -c 0 -u $speedFive'kHz'
 sudo cpufreq-set -g ondemand -c 1 -u $speedFive'kHz'
 sudo cpufreq-set -g ondemand -c 2 -u $speedFive'kHz'
 sudo cpufreq-set -g ondemand -c 3 -u $speedFive'kHz'
+#sudo cpufreq-set -g ondemand -c 4 -u $speedFive'kHz'
+#sudo cpufreq-set -g ondemand -c 5 -u $speedFive'kHz'
+#sudo cpufreq-set -g ondemand -c 6 -u $speedFive'kHz'
+#sudo cpufreq-set -g ondemand -c 7 -u $speedFive'kHz'
 echo 'CPU set to' $speedFive'kHz';;
 6) sudo cpufreq-set -g ondemand -c 0 -u $speedSix'kHz'
 sudo cpufreq-set -g ondemand -c 1 -u $speedSix'kHz'
 sudo cpufreq-set -g ondemand -c 2 -u $speedSix'kHz'
 sudo cpufreq-set -g ondemand -c 3 -u $speedSix'kHz'
+#sudo cpufreq-set -g ondemand -c 4 -u $speedSix'kHz'
+#sudo cpufreq-set -g ondemand -c 5 -u $speedSix'kHz'
+#sudo cpufreq-set -g ondemand -c 6 -u $speedSix'kHz'
+#sudo cpufreq-set -g ondemand -c 7 -u $speedSix'kHz'
 echo 'CPU set to' $speedSix'kHz';;
 7) sudo cpufreq-set -g ondemand -c 0 -u $speedSeven'kHz'
 sudo cpufreq-set -g ondemand -c 1 -u $speedSeven'kHz'
 sudo cpufreq-set -g ondemand -c 2 -u $speedSeven'kHz'
 sudo cpufreq-set -g ondemand -c 3 -u $speedSeven'kHz'
+#sudo cpufreq-set -g ondemand -c 4 -u $speedSeven'kHz'
+#sudo cpufreq-set -g ondemand -c 5 -u $speedSeven'kHz'
+#sudo cpufreq-set -g ondemand -c 6 -u $speedSeven'kHz'
+#sudo cpufreq-set -g ondemand -c 7 -u $speedSeven'kHz'
 echo 'CPU set to' $speedSeven'kHz';;
 *) echo 'Exiting without making changes';;
 esac
