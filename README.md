@@ -9,6 +9,7 @@ Written by Alyssa.
 Notes:
 
 Originally written for Debian 9 AMD64 with the Linux kernel
+* Adapted for fedora support aswell
 
 Will not work without the Linux kernel.
 

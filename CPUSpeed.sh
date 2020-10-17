@@ -16,8 +16,13 @@ echo 'CPU Speed Script'
 echo 'Written by Alyssa'
 echo ''
 #############################################################################################
+# check os type
+OS_TYPE=$( cat /etc/*-release | grep '^ID=' | cut -d'=' -f2- | tr '[:upper:]' '[:lower:]')
+#############################################################################################
 # check if cpufrequtils is installed, and if not, install it.
 echo 'Checking script dependencies...'
+if [[ "${OS_TYPE}" == 'debian' ]]; then
+echo 'Detected the Operating system as a Debian flavour'
 #create variable $installed and give a value base on an the output of a dpkg query piped to grep.
 installed=$(dpkg-query -W --showformat='${Status}\n' cpufrequtils|grep "install ok installed")
 echo Checking for cpufrequtils: $installed
@@ -25,6 +30,14 @@ echo Checking for cpufrequtils: $installed
 if [ "" == "$installed" ]; then
 echo "Dependencies missing. Installing now..."
 sudo apt-get --force-yes --yes install cpufrequtils
+fi
+elif [[ "${OS_TYPE}" == 'fedora' ]]; then
+echo 'Detected the Operating system as a Fedora flavour'
+# if statement that checks if the kernel-tools exists locally, enters if when it doesn't
+if [[ ! $(yum list --installed kernel-tools >/dev/null 2>&1) ]]; then
+echo "Dependencies 'kernel-tools'  missing. Installing now"
+sudo yum install --assumeyes kernel-tools
+fi
 fi
 echo 'Dependencies installed.'
 #############################################################################################
